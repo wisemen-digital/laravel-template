@@ -83,15 +83,9 @@ or
 npm run phpstan
 ```
 
-Before deploying
-
-```
-abc
-```
-
 ## Content
 
-Below are the commands used to install this template:
+Below are the commands used to create this template:
 ```
 # Create a new Laravel project
 composer create-project laravel/laravel appwise-template
@@ -108,15 +102,13 @@ php artisan vendor:publish --provider="Spatie\Fractal\FractalServiceProvider"
 
 # Spatie media library
 composer require spatie/laravel-medialibrary
-
-# Laravel password
 php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations"
+
+# Laravel passport
+composer require laravel/passport
 
 # Laravel pint
 composer require laravel/pint --dev
-
-# PHPStan
-composer require laravel/password
 
 # PHPStan
 composer require --dev phpstan/phpstan
