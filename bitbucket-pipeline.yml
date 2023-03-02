@@ -1,0 +1,84 @@
+image: appwisebe/laravel-docker:8.1
+
+options:
+  docker: true
+
+definitions:
+  caches:
+    composer-cache: /composer/cache
+
+  services:
+    docker:
+      memory: 1024
+    mysql:
+      image: mysql:8.0
+      variables:
+        MYSQL_DATABASE: test_database
+        MYSQL_USER: test_user
+        MYSQL_PASSWORD: test_password
+        MYSQL_ROOT_PASSWORD: test_password
+        MYSQL_ALLOW_EMPTY_PASSWORD: 1
+
+  steps:
+    - step: &Test
+        name: Test
+        #image: appwisebe/laravel-docker:8.1 When using different root image, add test image here.
+        script:
+          - composer install
+          - npm run test-pipeline
+        services:
+          - mysql
+
+    - step: &Deploy
+        name: Deploy to server
+        caches:
+          - composer-cache
+        script:
+          - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+          - composer dump-autoload --optimize --classmap-authoritative
+          - >-
+            rsync -crltDzv . $DEPLOY_URL:www/htdocs --delete-delay
+            --exclude=.env
+            --exclude=.git
+            --include='public/index.php'
+            --exclude='public/*'
+            --exclude='public/storage'
+            --exclude=storage/logs
+            --exclude=storage/framework/sessions
+            --exclude=storage/framework/cache
+            --exclude=storage/oauth-private.key
+            --exclude=storage/oauth-public.key
+          - ssh $DEPLOY_URL sh www/htdocs/post-deploy.sh
+
+pipelines:
+  pull-requests:
+    '**': #or feature/*:
+      - step:
+          name: Test
+          deployment: test
+          <<: *Test
+
+  branches:
+    development:
+      - step:
+          <<: *Deploy
+          name: Deploy to Development
+          deployment: development
+
+    test:
+      - step:
+          <<: *Deploy
+          name: Deploy to Test
+          deployment: test
+
+    staging:
+      - step:
+          <<: *Deploy
+          name: Deploy to Staging
+          deployment: staging
+
+    production:
+      - step:
+          <<: *Deploy
+          name: Deploy to Production
+          deployment: production
