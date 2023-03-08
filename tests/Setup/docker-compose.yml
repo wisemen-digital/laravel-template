@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: test_database
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test_password
+      MYSQL_ROOT_PASSWORD: test_password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - "9906:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-ptest_password"]
+      retries: 3
+      timeout: 5s
+
+  redis:
+    image: redis
+    ports:
+     - "6379:6379"
+
+  php:
+    working_dir: "/app"
+    image: appwisebe/laravel-docker:8.1
+    volumes:
+      - ../../:/app
+    depends_on:
+      - mysql
