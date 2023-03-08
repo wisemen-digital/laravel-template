@@ -16,9 +16,8 @@ Below are the packages we installed on top of the default Laravel package:
 Use the package manager [composer](https://getcomposer.org/) to install the project.
 
 ```
-composer create project appwise-labs/laravel-template "project-name"
+composer create-project appwise-labs/laravel-template project-name
 cd project-name
-composer install
 ```
 
 ## Usage
