@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Knuckles\Camel\Extraction\ExtractedEndpointData;
-use Knuckles\Scribe\Scribe;
 use Symfony\Component\HttpFoundation\Request;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,12 +24,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::preventLazyLoading(! app()->isProduction());
-
-        if (class_exists(\Knuckles\Scribe\Scribe::class)) {
-            Scribe::beforeResponseCall(function (Request $request, ExtractedEndpointData $endpointData) {
-                $token = User::first()->api_token;
-                $request->headers->add(["Authorization" => "Bearer $token"]);
-            });
-        }
     }
 }

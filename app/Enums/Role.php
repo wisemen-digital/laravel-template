@@ -2,13 +2,12 @@
 
 namespace App\Enums;
 
+use App\Traits\IsEnumTrait;
+
 enum Role implements IsEnum
 {
+    use IsEnumTrait;
+
     case admin;
     case user;
-
-    public static function all(): array
-    {
-        return array_column(self::cases(), 'name');
-    }
 }
