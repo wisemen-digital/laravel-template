@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\FooController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user', [UserController::class, 'me']);
-
-    Route::get('/users', [UserController::class, 'index']);
-    Route::post('/users', [UserController::class, 'store']);
-    Route::get('/users/{user}', [UserController::class, 'show']);
-    Route::post('/users/{user}', [UserController::class, 'update']);
+    Route::get('/foos', [FooController::class, 'index']);
+    Route::post('/foos', [FooController::class, 'store']);
+    Route::get('/foos/{foo}', [FooController::class, 'show']);
+    Route::post('/foos/{foo}', [FooController::class, 'update']);
 });

@@ -1,27 +1,53 @@
-## Packages
+# Project Name
 
-Below are the packages we installed on top of the default Laravel package:
+[Include a brief description or introduction of your project here]
 
-- PEST PHP: Pest is a modern PHP Testing Framework with a focus on simplicity. It is designed to let you write tests in a style you're already familiar with. It is built on top of PHPUnit and provides a better testing experience.
-- Spatie fractal: Spatie fractal is a package that helps you transform your Eloquent models and collections into a JSON API using fractal.
-- Spatie media library: Spatie media library is a package that helps you manage the files that are associated with your Eloquent models.
-- Laravel password: Laravel password is a package that helps you manage the password reset and email verification for your users.
-- Laravel pint: Laravel pint is an opinionated PHP code style fixer for minimalists. Pint is built on top of PHP-CS-Fixer and makes it simple to ensure that your code style stays clean and consistent.
-- PHPStan: PHPStan is a static analysis tool for your PHP code. It finds errors in your code without actually running it. It catches whole classes of bugs even before you write tests for the code. It moves PHP closer to compiled languages in the sense that the correctness of each line of the code can be checked before you run the actual line.
-- Sentry: Sentry is a cross-platform application monitoring, with a focus on error reporting.
-- Scribe: Scribe is a Laravel package that generates API documentation from your Laravel API routes and Laravel API controllers.
+## Table of Contents
+
+- [Installation](#installation)
+- [Environment variables](#environment-variables)
+- [Credentials](#credentials)
+- [Usage](#usage)
+- [Features](#features)
+- [Entry points](#entry-points)
+- [Production Setup](#production-setup)
+- [Site URLs](#site-urls)
+- [Documentation](#documentation)
 
 ## Installation
 
-Use the package manager [composer](https://getcomposer.org/) to install the project.
+[Provide instructions on how to install and set up your Laravel project. Include any dependencies or prerequisites that need to be installed and how to obtain them.]
 
 ```
-composer create project appwise-labs/laravel-template "project-name"
-cd project-name
+# Clone the repository
+git clone https://github.com/your-username/your-project.git
+
+# Change into the project directory
+cd your-project
+
+# Install composer dependencies
 composer install
+
+# Set up environment variables
+cp .env.example .env
+php artisan key:generate
+
+# Run database migrations
+php artisan migrate
+
+# Start the development server
+php artisan serve
 ```
+## Environment variables
+Set up the following environment variables in your .env file:
+```
+TEST_ENV_VARIABLE=example_value
+```
+## Credentials
+You can find the credentials for this project in 1password or on confluence: [link to confluence page]
 
 ## Usage
+[Explain how to use your Laravel project, including any important commands or features. Provide examples and instructions for common tasks.]
 
 Before running the project
 
@@ -69,12 +95,6 @@ or
 npm run test
 ```
 
-To generate API documentation
-
-```
-php artisan scribe:generate
-```
-
 Before pushing to git, run PHPStan to analyse your code
 
 ```
@@ -83,40 +103,29 @@ or
 npm run phpstan
 ```
 
-## Content
+## Features
 
-Below are the commands used to create this template:
-```
-# Create a new Laravel project
-composer create-project laravel/laravel appwise-template
+[List the main features or functionalities of your Laravel project. You can provide a brief description of each feature and explain how it benefits the users or developers.]
 
-# PEST PHP
-composer require phpunit/phpunit:^9.6 nunomaduro/collision:^6.1 --dev --with-all-dependencies
-composer require pestphp/pest --dev --with-all-dependencies
-composer require pestphp/pest-plugin-laravel --dev
-php artisan pest:install
+- Feature 1: [Description]
+- Feature 2: [Description]
+- Feature 3: [Description]
 
-# Spatie fractal
-composer require spatie/laravel-fractal
-php artisan vendor:publish --provider="Spatie\Fractal\FractalServiceProvider"
+## Entry points
 
-# Spatie media library
-composer require spatie/laravel-medialibrary
-php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations"
+[Provide a list of entry points for your Laravel project. These are the routes that can be accessed by the user. Include a brief description of each route.]
 
-# Laravel passport
-composer require laravel/passport
+## Production Setup
 
-# Laravel pint
-composer require laravel/pint --dev
+[Provide instructions on how to set up your Laravel project for production. Include any dependencies or prerequisites that need to be installed and how to obtain them.]
 
-# PHPStan
-composer require --dev phpstan/phpstan
+## Site URLs
 
-# Sentry
-composer require sentry/sentry-laravel
+- Production URL: [URL]
+- Staging URL: [URL]
+- Testing URL: [URL]
+- Development URL: [URL]
 
-# Scribe
-composer require --dev knuckleswtf/scribe
-php artisan vendor:publish --tag=scribe-config
-```
+## Documentation
+
+[Provide a link to the documentation for your Laravel project. This can be a link to a Confluence page.]
