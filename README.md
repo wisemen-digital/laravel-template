@@ -85,7 +85,6 @@ TODO: To generate API documentation
 php artisan ...
 ```
 
->>>>>>> 530a01936b9df508586b6ce42ddfb0b345d4ab78
 Before pushing to git, run PHPStan to analyse your code
 
 ```
@@ -125,4 +124,3 @@ npm run phpstan
 # Sentry
 composer require sentry/sentry-laravel
 ```
->>>>>>> 530a01936b9df508586b6ce42ddfb0b345d4ab78
