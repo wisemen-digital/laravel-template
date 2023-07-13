@@ -30,7 +30,7 @@ paths:
       description: |
         Example openapi call to get all foos
       tags:
-        - user
+        - foo
       responses:
         "200":
           description: "Success"
