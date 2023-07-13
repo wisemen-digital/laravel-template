@@ -5,7 +5,7 @@ namespace App\Transformers;
 use App\Models\User;
 use League\Fractal\TransformerAbstract;
 
-class UserTransformer extends TransformerAbstract
+class FooTransformer extends TransformerAbstract
 {
     protected array $defaultIncludes = [];
 
@@ -20,14 +20,10 @@ class UserTransformer extends TransformerAbstract
         return [
             'id' => $resource->id,
 
-            'email' => $resource->email,
-            'role' => $resource->role,
+            'name' => $resource->name,
 
-            'first_name' => $resource->first_name,
-            'last_name' => $resource->last_name,
-
-            'created_at' => $resource->created_at?->timestamp,
-            'updated_at' => $resource->updated_at?->timestamp,
+            'created_at' => $resource->created_at?->toDateTimeString(),
+            'updated_at' => $resource->updated_at?->toDateTimeString(),
         ];
     }
 }

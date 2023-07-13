@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\Role;
+use App\Enums\Language;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -22,7 +22,7 @@ class UserFactory extends Factory
         return [
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'role' => fake()->randomElement(Role::all()),
+            'language' => fake()->randomElement(Language::all()),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt('password123'),
