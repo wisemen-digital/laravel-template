@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\Models\User;
+use App\Models\Foo;
 use League\Fractal\TransformerAbstract;
 
 class FooTransformer extends TransformerAbstract
@@ -15,7 +15,7 @@ class FooTransformer extends TransformerAbstract
     {
     }
 
-    public function transform(User $resource)
+    public function transform(Foo $resource)
     {
         return [
             'id' => $resource->id,

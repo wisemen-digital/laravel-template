@@ -30,6 +30,10 @@ expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
 
+expect()->extend('toBeUuid', function () {
+    return is_string($this->value) && preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $this->value);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions
