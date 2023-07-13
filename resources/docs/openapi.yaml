@@ -23,6 +23,51 @@ paths:
                 $ref: "#/components/schemas/User"
       security: []
 
+
+  /api/foos:
+    get:
+      summary: Get all foos
+      description: |
+        Example openapi call to get all foos
+      tags:
+        - foo
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Foo"
+
+      security: []
+
+  /api/foos/{uuid}:
+    get:
+      summary: Get foo details
+      description: |
+        Example openapi call to get foo details
+      tags:
+        - foo
+
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The foo uuid
+
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Foo"
+      security: []
+
 components:
   schemas:
     User:
@@ -34,6 +79,14 @@ components:
 
         email:
           type: string
+
+    Foo:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1
 
   securitySchemes:
     OAuth2:

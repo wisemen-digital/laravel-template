@@ -16,10 +16,12 @@ abstract class TestCase extends BaseTestCase
     use DatabaseTransactions;
     use DatabaseMigrations;
 
+    use ValidateDocs;
+
     //RefreshDatabase: Define hooks to migrate the database before and after each test.
     protected function refreshTestDatabase()
     {
-        if (! RefreshDatabaseState::$migrated) {
+        if (!RefreshDatabaseState::$migrated) {
             var_dump('running migrate');
             $this->artisan('migrate');
 
