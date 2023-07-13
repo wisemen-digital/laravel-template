@@ -19,24 +19,8 @@
 [Provide instructions on how to install and set up your Laravel project. Include any dependencies or prerequisites that need to be installed and how to obtain them.]
 
 ```
-# Clone the repository
-git clone https://github.com/your-username/your-project.git
-
-# Change into the project directory
-cd your-project
-
-# Install composer dependencies
-composer install
-
-# Set up environment variables
-cp .env.example .env
-php artisan key:generate
-
-# Run database migrations
-php artisan migrate
-
-# Start the development server
-php artisan serve
+composer create-project appwise-labs/laravel-template project-name
+cd project-name
 ```
 ## Environment variables
 Set up the following environment variables in your .env file:
