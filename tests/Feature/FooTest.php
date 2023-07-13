@@ -47,7 +47,7 @@ it('should create new user', function () {
 
     expect($response->getData())
         ->toBeObject()
-        ->id->toBeInt()
+        ->id->toBeUuid()
         ->name->toBe($data->name);
 });
 
