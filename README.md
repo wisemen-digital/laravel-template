@@ -9,7 +9,6 @@ Below are the packages we installed on top of the default Laravel package:
 - Laravel pint: Laravel pint is an opinionated PHP code style fixer for minimalists. Pint is built on top of PHP-CS-Fixer and makes it simple to ensure that your code style stays clean and consistent.
 - PHPStan: PHPStan is a static analysis tool for your PHP code. It finds errors in your code without actually running it. It catches whole classes of bugs even before you write tests for the code. It moves PHP closer to compiled languages in the sense that the correctness of each line of the code can be checked before you run the actual line.
 - Sentry: Sentry is a cross-platform application monitoring, with a focus on error reporting.
-- Scribe: Scribe is a Laravel package that generates API documentation from your Laravel API routes and Laravel API controllers.
 
 ## Installation
 
@@ -68,10 +67,10 @@ or
 npm run test
 ```
 
-To generate API documentation
+TODO: To generate API documentation
 
 ```
-php artisan scribe:generate
+php artisan ...
 ```
 
 Before pushing to git, run PHPStan to analyse your code
@@ -114,8 +113,4 @@ composer require --dev phpstan/phpstan
 
 # Sentry
 composer require sentry/sentry-laravel
-
-# Scribe
-composer require --dev knuckleswtf/scribe
-php artisan vendor:publish --tag=scribe-config
 ```
