@@ -111,7 +111,6 @@ npm run phpstan
 
 ## Site URLs
 
-<<<<<<< HEAD
 - Production URL: [URL]
 - Staging URL: [URL]
 - Testing URL: [URL]
