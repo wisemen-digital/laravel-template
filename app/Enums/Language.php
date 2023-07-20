@@ -2,11 +2,11 @@
 
 namespace App\Enums;
 
-enum Language implements IsEnum
+enum Language : string implements IsEnum
 {
     use EnumTrait;
 
-    case nl;
-    case fr;
-    case en;
+    case nl = 'nl';
+    case fr = 'fr';
+    case en = 'en';
 }
