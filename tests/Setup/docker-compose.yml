@@ -22,7 +22,7 @@ services:
 
   php:
     working_dir: "/app"
-    image: appwisebe/laravel-docker:8.1
+    image: appwisebe/laravel-docker:8.2
     volumes:
       - ../../:/app
     depends_on:

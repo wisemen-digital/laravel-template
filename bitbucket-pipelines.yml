@@ -1,4 +1,4 @@
-image: appwisebe/laravel-docker:8.1
+image: appwisebe/laravel-docker:8.2
 
 options:
   docker: true
@@ -22,7 +22,7 @@ definitions:
   steps:
     - step: &Test
         name: Test
-        #image: appwisebe/laravel-docker:8.1 When using different root image, add test image here.
+        #image: appwisebe/laravel-docker:8.2 When using different root image, add test image here.
         script:
           - composer install
           - npm run test-pipeline
