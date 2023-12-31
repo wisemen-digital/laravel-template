@@ -21,10 +21,11 @@ class LanguageMiddleware
         return $next($request);
     }
 
-    public function formatLanguage(string $language): string {
+    public function formatLanguage(string $language): string
+    {
         $position = strpos($language, '_');
 
-        if(!$position) {
+        if (! $position) {
             return $language;
         }
 

@@ -2,11 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
-use Knuckles\Camel\Extraction\ExtractedEndpointData;
-use Symfony\Component\HttpFoundation\Request;
 
 class AppServiceProvider extends ServiceProvider
 {

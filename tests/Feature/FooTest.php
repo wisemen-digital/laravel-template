@@ -2,7 +2,8 @@
 
 use App\Models\Foo;
 
-function foo() {
+function foo()
+{
     return Foo::factory()->create();
 }
 

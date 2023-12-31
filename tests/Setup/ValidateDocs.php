@@ -15,15 +15,17 @@ trait ValidateDocs
 
     protected ValidatorInterface $validator;
 
-    public function getValidator(): ValidatorInterface {
-        if(!isset($this->validator) || !$this->validator) {
+    public function getValidator(): ValidatorInterface
+    {
+        if (! isset($this->validator) || ! $this->validator) {
             $this->validator = ValidatorBuilder::fromYamlFile(resource_path('docs/openapi.yaml'))->getValidator();
         }
 
         return $this->validator;
     }
 
-    public function call($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null) {
+    public function call($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
+    {
         $kernel = $this->app->make(HttpKernel::class);
 
         $files = array_merge($files, $this->extractFilesFromDataArray($parameters));
@@ -40,7 +42,7 @@ trait ValidateDocs
         $kernel->terminate($request, $response);
 
         $status_code = $response->getStatusCode();
-        if($status_code >= 200 && $status_code < 300) {
+        if ($status_code >= 200 && $status_code < 300) {
             $validator = $this->getValidator();
 
             $validator->validate($request, $uri, $method);

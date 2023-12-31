@@ -12,9 +12,10 @@ it('uses the accept-language header', function (string $expectedLocale, string $
     $request->headers->set('Accept-Language', $header);
 
     $middleware = new LanguageMiddleware();
-    $middleware->handle($request, function() {});
+    $middleware->handle($request, function () {
+    });
 
-    Event::assertDispatched(LocaleUpdated::class, function(LocaleUpdated $event) use($expectedLocale) {
+    Event::assertDispatched(LocaleUpdated::class, function (LocaleUpdated $event) use ($expectedLocale) {
         return $event->locale === $expectedLocale;
     });
 })->with([

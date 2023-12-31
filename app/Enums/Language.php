@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum Language : string implements IsEnum
+enum Language: string implements IsEnum
 {
     use EnumTrait;
 
