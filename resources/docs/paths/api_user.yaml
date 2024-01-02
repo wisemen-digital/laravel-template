@@ -1,0 +1,15 @@
+get:
+  summary: Get own user
+  description: |
+    Example openapi call to get own user
+  tags:
+    - user
+  responses:
+    "200":
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/User.yaml
+
+  security: []

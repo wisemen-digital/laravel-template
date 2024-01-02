@@ -1,0 +1,24 @@
+get:
+  summary: Get foo details
+  description: |
+    Example openapi call to get foo details
+  tags:
+    - foo
+
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The foo id
+
+  responses:
+    "200":
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Foo.yaml
+  security: []
