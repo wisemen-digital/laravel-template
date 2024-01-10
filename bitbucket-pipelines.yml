@@ -6,6 +6,7 @@ options:
 definitions:
   caches:
     composer-cache: /composer/cache
+    npm: $HOME/.npm
 
   services:
     docker:
@@ -20,26 +21,60 @@ definitions:
         MYSQL_ALLOW_EMPTY_PASSWORD: 1
 
   steps:
-    - step: &Test
-        name: Test
-        #image: appwisebe/laravel-docker:8.2 When using different root image, add test image here.
+    - step: &BuildDev
+        caches:
+          - composer-cache
         script:
           - composer install
+        artifacts:
+          - vendor/**
+
+    - step: &Build
+        caches:
+          - composer-cache
+        script:
+          - composer install --no-dev
+        artifacts:
+          - vendor/**
+
+    - step: &Test
+        name: Test
+        script:
+          - for i in {1..30}; do nc -zv 127.0.0.1 3306 && break || sleep 1; done; #wait for mysql to start
           - npm run test-pipeline
         services:
           - mysql
 
-    - step: &Deploy
-        name: Deploy to server
-        caches:
-          - composer-cache
+
+    - step: &Linting
+        name: Test
         script:
-          - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
-          - composer dump-autoload --optimize --classmap-authoritative
+          - npm run pint-dirty
+        services:
+          - mysql
+
+    - step: &StaticAnalysis
+        name: Test
+        script:
+          - npm run phpstan
+        services:
+          - mysql
+
+    - step: &PublishDocs
+        name: Publish docs
+        services:
+          - docker
+        script:
+          - curl -F file=@resources/docs/openapi.yaml https://docs-diff.development.appwi.se/api/v1/projects/${BITBUCKET_REPO_SLUG} -F environment=${BITBUCKET_DEPLOYMENT_ENVIRONMENT} -F pipeline=${BITBUCKET_BUILD_NUMBER} -F commit=${BITBUCKET_COMMIT} -F author=${BITBUCKET_STEP_TRIGGERER_UUID}
+
+
+    - step: &Deploy
+        script:
           - >-
             rsync -crltDzv . $DEPLOY_URL:www/htdocs --delete-delay
             --exclude=.env
             --exclude=.git
+            --exclude=node_modules
             --include='public/index.php'
             --exclude='public/*'
             --exclude='public/storage'
@@ -52,33 +87,79 @@ definitions:
 
 pipelines:
   pull-requests:
-    '**': #or feature/*:
+    '**':
       - step:
-          name: Test
-          deployment: test
-          <<: *Test
+          name: Build with dev dependencies
+          <<: *BuildDev
+
+      - parallel:
+          - step:
+              name: Test
+              <<: *Test
+
+          - step:
+              name: Linting
+              <<: *Linting
+
+          - step:
+              name: Static Analysis
+              <<: *StaticAnalysis
+
 
   branches:
     development:
-      - step:
-          <<: *Deploy
-          name: Deploy to Development
+      - stage:
+          name: Deploy and Publish docs
           deployment: development
+          steps:
+            - step:
+                name: Build with dev dependencies
+                <<: *BuildDev
+            - step:
+                name: Deploy to development
+                <<: *Deploy
+
+            - step:
+                <<: *PublishDocs
 
     test:
-      - step:
-          <<: *Deploy
-          name: Deploy to Test
-          deployment: test
+      - stage:
+          deployment: staging
+          steps:
+            - step:
+                name: Build with dev dependencies
+                <<: *BuildDev
+            - step:
+                name: Deploy to test
+                <<: *Deploy
+
+            - step:
+                <<: *PublishDocs
 
     staging:
-      - step:
-          <<: *Deploy
-          name: Deploy to Staging
+      - stage:
           deployment: staging
+          steps:
+            - step:
+                name: Build dependencies
+                <<: *Build
+            - step:
+                name: Deploy to staging
+                <<: *Deploy
+
+            - step:
+                <<: *PublishDocs
 
     production:
-      - step:
-          <<: *Deploy
-          name: Deploy to Production
+      - stage:
           deployment: production
+          steps:
+            - step:
+                name: Build
+                <<: *Build
+            - step:
+                name: Deploy to production
+                <<: *Deploy
+
+            - step:
+                <<: *PublishDocs
