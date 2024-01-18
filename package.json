@@ -1,13 +1,13 @@
 {
     "private": true,
     "scripts": {
-        "test": "docker-compose -f ./tests/Setup/docker-compose.yml run --rm php php ./vendor/bin/pest --bootstrap=./tests/Setup/bootstrap.php",
+        "test": "docker-compose -f ./tests/Setup/docker-compose.yml run --rm php ./vendor/bin/pest --bootstrap=./tests/Setup/bootstrap.php",
         "test-pipeline": "php ./vendor/bin/pest --bootstrap=./tests/Setup/bootstrap-pipeline.php --log-junit ./test-reports/junit.xml",
 
         "up": "docker-compose -f ./tests/Setup/docker-compose.yml up #make sure docker isn't running anymore",
         "down": "docker-compose -f ./tests/Setup/docker-compose.yml down #make sure docker isn't running anymore",
 
-        "phpstan": "./vendor/bin/phpstan analyse app",
+        "phpstan": "docker-compose -f ./tests/Setup/docker-compose.yml run --rm php ./vendor/bin/phpstan analyse app",
 
         "pint": "./vendor/bin/pint",
         "pint-test": "./vendor/bin/pint --test",
@@ -16,6 +16,6 @@
         "build-docs": "openapi bundle resources/docs/draft.yaml -o resources/docs/openapi.yaml"
     },
     "devDependencies": {
-
+        "@redocly/cli": "^1.6.0"
     }
 }
