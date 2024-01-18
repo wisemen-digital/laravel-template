@@ -18,7 +18,7 @@ class Foo extends Model
 
     public $dates = [
         'updated_at',
-        'created_at'
+        'created_at',
     ];
 
     public function user()

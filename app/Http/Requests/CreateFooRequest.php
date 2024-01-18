@@ -16,7 +16,7 @@ class CreateFooRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'user_id' => ['sometimes', 'nullable', Rule::exists('users', 'id')]
+            'user_id' => ['sometimes', 'nullable', Rule::exists('users', 'id')],
         ];
     }
 }
