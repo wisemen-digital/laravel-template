@@ -11,7 +11,9 @@
 
         "pint": "./vendor/bin/pint",
         "pint-test": "./vendor/bin/pint --test",
-        "pint-dirty": "./vendor/bin/pint --dirty"
+        "pint-dirty": "./vendor/bin/pint --dirty",
+
+        "build-docs": "openapi bundle resources/docs/draft.yaml -o resources/docs/openapi.yaml"
     },
     "devDependencies": {
 

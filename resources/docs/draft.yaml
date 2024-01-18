@@ -1,0 +1,36 @@
+openapi: 3.0.3
+info:
+  title: MyProject API
+  description: ""
+  version: 1.0.0
+servers:
+  - url: https://.production.../
+  - url: https://.staging.../
+  - url: https://.development.../
+
+paths:
+  /oauth/token:
+    $ref: paths/oauth_token.yaml
+
+  /api/user:
+    $ref: paths/api_user.yaml
+
+  /api/foos:
+    $ref: paths/api_foos.yaml
+  /api/foos/{id}:
+    $ref: paths/api_foos_{id}.yaml
+
+components:
+  schemas:
+
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /oauth/token
+          scopes:
+            read: read
+            write: update
+            data: data
+            "*": All
