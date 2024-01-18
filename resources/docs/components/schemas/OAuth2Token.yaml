@@ -1,0 +1,13 @@
+type: object
+properties:
+  token_type:
+    type: string
+    enum:
+      - bearer
+  expires_in:
+    type: integer
+    format: int32
+  access_token:
+    type: string
+  refresh_token:
+    type: string

@@ -9,11 +9,13 @@
 
         "phpstan": "docker-compose -f ./tests/Setup/docker-compose.yml run --rm php ./vendor/bin/phpstan analyse app",
 
-        "pint": "docker-compose -f ./tests/Setup/docker-compose.yml run --rm php ./vendor/bin/pint",
-        "pint-test": "docker-compose -f ./tests/Setup/docker-compose.yml run --rm php ./vendor/bin/pint --test",
-        "pint-dirty": "docker-compose -f ./tests/Setup/docker-compose.yml run --rm php ./vendor/bin/pint --dirty"
+        "pint": "./vendor/bin/pint",
+        "pint-test": "./vendor/bin/pint --test",
+        "pint-dirty": "./vendor/bin/pint --dirty",
+
+        "build-docs": "openapi bundle resources/docs/draft.yaml -o resources/docs/openapi.yaml"
     },
     "devDependencies": {
-
+        "@redocly/cli": "^1.6.0"
     }
 }

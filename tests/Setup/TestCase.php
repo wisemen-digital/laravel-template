@@ -15,6 +15,7 @@ abstract class TestCase extends BaseTestCase
     use DatabaseMigrations;
     //use RefreshDatabase;
     use DatabaseTransactions;
+    use DatabaseMigrations;
     use ValidateDocs;
 
     //RefreshDatabase: Define hooks to migrate the database before and after each test.
