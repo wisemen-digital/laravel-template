@@ -4,5 +4,5 @@ namespace App\Enums;
 
 interface IsEnum
 {
-    public static function all(): array;
+    public static function names(): array;
 }

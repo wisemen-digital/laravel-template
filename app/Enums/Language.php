@@ -2,9 +2,11 @@
 
 namespace App\Enums;
 
+use App\Enums\Traits\IsExtendedEnum;
+
 enum Language : string implements IsEnum
 {
-    use EnumTrait;
+    use IsExtendedEnum;
 
     case nl = 'nl';
     case fr = 'fr';
