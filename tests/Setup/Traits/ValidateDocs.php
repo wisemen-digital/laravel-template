@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Setup;
+namespace Tests\Setup\Traits;
 
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
