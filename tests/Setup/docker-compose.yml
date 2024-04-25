@@ -26,4 +26,5 @@ services:
     volumes:
       - ../../:/app
     depends_on:
-      - mysql
+        mysql:
+            condition: service_healthy
