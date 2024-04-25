@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Setup;
+namespace Tests\Setup\Traits;
 
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
@@ -53,6 +53,6 @@ trait ValidateDocs
             $response = $this->followRedirects($response);
         }
 
-        return static::$latestResponse = $this->createTestResponse($response);
+        return static::$latestResponse = $this->createTestResponse($response, $request);
     }
 }
