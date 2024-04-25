@@ -53,6 +53,6 @@ trait ValidateDocs
             $response = $this->followRedirects($response);
         }
 
-        return static::$latestResponse = $this->createTestResponse($response);
+        return static::$latestResponse = $this->createTestResponse($response, $request);
     }
 }
