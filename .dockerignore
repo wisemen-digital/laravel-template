@@ -1,0 +1,29 @@
+# General
+**/.DS_Store
+**/*.md
+**/LICENSE
+
+# Git
+**/.git
+**/.github
+**/.gitattributes
+**/.gitignore
+
+# Docker
+**/.dockerignore
+**/Dockerfile
+**/docker-compose.yaml
+
+# Laravel 
+bootstrap/cache
+storage/framework
+storage/logs
+!bootstrap/cache/.gitignore
+!storage/**/.gitignore
+tests
+vendor
+
+# Env
+.env
+.env.*
+!.env.example
