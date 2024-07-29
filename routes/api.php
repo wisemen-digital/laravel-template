@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Health probes routes
+Route::get('/', function () {
+    return response()->json(['message' => 'OK'], 200);
+});
+Route::get('/health', function () {
+    return response()->json(['message' => 'OK'], 200);
+});
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/foos', [FooController::class, 'index']);
     Route::post('/foos', [FooController::class, 'store']);
