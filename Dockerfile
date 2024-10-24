@@ -5,7 +5,7 @@ ARG PHP_VERSION=8.3
 # --- Stage 1: Build ---
 #
 
-FROM lorisleiva/laravel-docker:${PHP_VERSION} as build
+FROM lorisleiva/laravel-docker:${PHP_VERSION} AS build
 
 ARG BUILD_COMMIT
 ARG BUILD_NUMBER
@@ -29,7 +29,7 @@ RUN composer dump-autoload --optimize --classmap-authoritative \
 # --- Stage 2: Run ---
 #
 
-FROM ghcr.io/wisemen-digital/php-base:${PHP_VERSION} as final
+FROM ghcr.io/wisemen-digital/php-base:${PHP_VERSION} AS final
 
 # Add application
 COPY --from=build --chown=nobody /app/ /app/www/
