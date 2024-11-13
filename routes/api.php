@@ -14,14 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Health probes routes
 Route::get('/', function () {
-    return response()->json(['message' => 'OK'], 200);
+    return response()->json([
+        'environment' => env('APP_ENV'),
+        'commit' => env('BUILD_COMMIT'),
+        'version' => env('BUILD_NUMBER'),
+        'timestamp' => env('BUILD_TIMESTAMP'),
+    ], 200);
 });
 Route::get('/health', function () {
     return response()->json(['message' => 'OK'], 200);
 });
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/foos', [FooController::class, 'index']);

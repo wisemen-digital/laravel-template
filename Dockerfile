@@ -31,6 +31,14 @@ RUN composer dump-autoload --optimize --classmap-authoritative \
 
 FROM ghcr.io/wisemen-digital/php-base:${PHP_VERSION} AS final
 
+ARG BUILD_COMMIT
+ARG BUILD_NUMBER
+ARG BUILD_TIMESTAMP
+
+ENV BUILD_COMMIT $BUILD_COMMIT
+ENV BUILD_NUMBER $BUILD_NUMBER
+ENV BUILD_TIMESTAMP $BUILD_TIMESTAMP
+
 # Add application
 COPY --from=build --chown=nobody /app/ /app/www/
 
