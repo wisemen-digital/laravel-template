@@ -10,7 +10,7 @@ use Tests\Setup\Traits\ValidateDocs;
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
-    use MigrateFreshSeedOnce;
     use DatabaseTransactions;
+    use MigrateFreshSeedOnce;
     use ValidateDocs;
 }
