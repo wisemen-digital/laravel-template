@@ -11,7 +11,7 @@ trait IsExtendedEnum
      * Get the names of the enum cases.
      *
      * @param  mixed  ...$cases
-     * @return array
+     *
      * @throws Exception
      */
     public static function names(...$cases): array
@@ -26,9 +26,6 @@ trait IsExtendedEnum
     /**
      * Check if a name exists in the enum cases.
      *
-     * @param  string  $name
-     * @param  bool  $strict
-     * @return bool
      * @throws Exception
      */
     public static function hasName(string $name, bool $strict = false): bool
@@ -40,7 +37,7 @@ trait IsExtendedEnum
      * Get the values of the enum cases.
      *
      * @param  mixed  ...$cases
-     * @return array
+     *
      * @throws Exception
      */
     public static function values(...$cases): array
@@ -55,8 +52,6 @@ trait IsExtendedEnum
     /**
      * Check if a value exists in the enum cases.
      *
-     * @param  string  $value
-     * @return bool
      * @throws Exception
      */
     public static function hasValue(string $value): bool
@@ -68,7 +63,7 @@ trait IsExtendedEnum
      * Get options of the enum cases.
      *
      * @param  mixed  ...$cases
-     * @return array
+     *
      * @throws Exception
      */
     public static function options(...$cases): array
@@ -82,7 +77,7 @@ trait IsExtendedEnum
      * Check if the enum instance equals any of the provided cases.
      *
      * @param  mixed  ...$cases
-     * @return bool
+     *
      * @throws Exception
      */
     public function equals(...$cases): bool
@@ -97,9 +92,8 @@ trait IsExtendedEnum
     /**
      * Magic method for static calls.
      *
-     * @param string $name
-     * @param array $arguments
      * @return mixed
+     *
      * @throws Exception|InvalidArgumentException
      */
     public static function __callStatic(string $name, array $arguments)
@@ -110,14 +104,12 @@ trait IsExtendedEnum
             return $options[$name];
         }
 
-        throw new InvalidArgumentException('Undefined constant ' . self::class . '::' . $name);
+        throw new InvalidArgumentException('Undefined constant '.self::class.'::'.$name);
     }
 
     /**
      * Validate and flatten the provided cases.
      *
-     * @param mixed $cases
-     * @return array
      * @throws InvalidArgumentException
      */
     private static function validate(mixed $cases): array
@@ -129,7 +121,7 @@ trait IsExtendedEnum
         })) {
             [$type, $class] = get_type_and_class(shift($filter));
 
-            throw new InvalidArgumentException('Arguments must be of type ' . self::class . ', ' . ($class ?? $type) . ' given');
+            throw new InvalidArgumentException('Arguments must be of type '.self::class.', '.($class ?? $type).' given');
         }
 
         return $cases ?: self::cases();
