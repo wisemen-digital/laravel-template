@@ -7,8 +7,8 @@ if (! function_exists('attempt')) {
      * Attempts to execute a callback and returns its result or null on failure. Optionally logs errors.
      * Example: $result = attempt(function () { return 2 * 3; }); // Returns 6
      *
-     * @param  callable  $callback The callback to execute.
-     * @param  bool  $log Whether to log errors or not.
+     * @param  callable  $callback  The callback to execute.
+     * @param  bool  $log  Whether to log errors or not.
      * @return mixed|null The result of the callback or null on failure.
      */
     function attempt(callable $callback, bool $log = true): mixed
@@ -50,8 +50,8 @@ if (! function_exists('starts_with')) {
      * Checks if `$haystack` starts with any of the `$needles`.
      * Example: $check = starts_with('hello world', ['he', 'wo']); // Returns true
      *
-     * @param  string  $haystack The string to search in.
-     * @param  array  $needles The strings to search for.
+     * @param  string  $haystack  The string to search in.
+     * @param  array  $needles  The strings to search for.
      * @return bool True if `$haystack` starts with any of the `$needles`, false otherwise.
      */
     function starts_with(string $haystack, array $needles): bool
