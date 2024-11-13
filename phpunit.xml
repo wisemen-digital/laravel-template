@@ -15,6 +15,10 @@
         </testsuite>
         -->
         <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Template</directory>
+        </testsuite>
+
+        <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
@@ -30,7 +34,7 @@
         <!---
         Never change this
         -->
-        <server name="APP_ENV" value="testing"/>
+        <server name="APP_ENV" value="testing" force="true"/>
         <server name="DATABASE_URL" value="" force="true"/>
 
         <!---
@@ -39,14 +43,14 @@
         Pipeline: bootstrap-pipeline.php override host to 127.0.0.1
         <server name="DB_HOST" value="127.0.0.1"/>
         -->
-        <server name="DB_HOST" value="127.0.0.1"/>
+        <server name="DB_HOST" value="127.0.0.1" force="true"/>
 
         <!---
         We're using port 9906 instead of 3306 so that we don't conflict with other mysql servers possibly on the developer's device
         This is also the default port of the docker-compose mysql image
         <server name="DB_PORT" value="9906"/>
         -->
-        <server name="DB_PORT" value="9906"/>
+        <server name="DB_PORT" value="9906" force="true"/>
 
         <server name="DB_CONNECTION" value="mysql"/>
         <server name="DB_DATABASE" value="test_database"/>

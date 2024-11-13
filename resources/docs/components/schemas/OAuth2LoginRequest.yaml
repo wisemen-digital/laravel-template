@@ -1,0 +1,20 @@
+type: object
+properties:
+  grant_type:
+    type: string
+    enum:
+      - password
+      - refresh_token
+  client_id:
+    type: string
+  client_secret:
+    type: string
+  username:
+    type: string
+    description: in case of grant_type password
+  password:
+    type: string
+    description: in case of grant_type password
+  refresh_token:
+    type: string
+    description: in case of grant_type refresh_token

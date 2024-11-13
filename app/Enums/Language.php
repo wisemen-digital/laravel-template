@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Enums\Traits\IsExtendedEnum;
 
-enum Language : string implements IsEnum
+enum Language: string implements IsEnum
 {
     use IsExtendedEnum;
 

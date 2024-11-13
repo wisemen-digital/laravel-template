@@ -7,16 +7,16 @@ use Illuminate\Validation\Rule;
 
 class CreateFooRequest extends FormRequest
 {
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|string',
-            'user_id' => ['sometimes', 'nullable', Rule::exists('users', 'id')]
+            'user_id' => ['sometimes', 'nullable', Rule::exists('users', 'id')],
         ];
     }
 }

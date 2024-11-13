@@ -23,8 +23,6 @@ trait CreatesApplication
 
         $app = $this->overrideDatabaseConfig($app);
 
-        //$this->run_artisan($app, 'migrate');
-
         return $app;
     }
 

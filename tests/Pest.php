@@ -14,6 +14,7 @@
 use App\Models\User;
 
 uses(\Tests\Setup\TestCase::class)->in('Feature');
+uses(\Tests\Setup\TestCase::class)->in('Template');
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +26,6 @@ uses(\Tests\Setup\TestCase::class)->in('Feature');
 | to assert different things. Of course, you may extend the Expectation API at any time.
 |
 */
-
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
-});
 
 expect()->extend('toBeUuid', function () {
     return is_string($this->value) && preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $this->value);
