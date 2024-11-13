@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
-use Knuckles\Camel\Extraction\ExtractedEndpointData;
-use Symfony\Component\HttpFoundation\Request;
+use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Passport::enablePasswordGrant();
+
         Model::preventLazyLoading(! app()->isProduction());
     }
 }

@@ -1,0 +1,15 @@
+get:
+  summary: Get all foos
+  description: |
+    Example openapi call to get all foos
+  tags:
+    - foo
+  responses:
+    "200":
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/FoosResponse.yaml
+
+  security: []
